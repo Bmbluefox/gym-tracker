@@ -1,0 +1,9 @@
+# Entorno virtual y librerías
+venv/
+
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+
+# Archivo de variables de entorno (contraseñas futuras)
+.env

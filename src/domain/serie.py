@@ -4,6 +4,10 @@ from src.domain.ejercicio import Ejercicio, TipoEjercicio
 class Serie(ABC):
     def __init__(self, ejercicio: Ejercicio):
         self.ejercicio = ejercicio
+        self.completada = False
+
+    def marcar_completada(self):
+        self.completada = True
 
 
     @abstractmethod
@@ -11,7 +15,7 @@ class Serie(ABC):
         pass
 
 class SerieFuerza(Serie):
-    def __init__(self, ejercicio: Ejercicio, repeticiones: int, peso_kg: float = 0.0):
+    def __init__(self, ejercicio: Ejercicio, repeticiones: int, peso_kg: float = 0.0, descanso_segundos: int = 0):
 
         if ejercicio.tipo == TipoEjercicio.CARDIO:
             raise ValueError("No se puede crear una SerieFuerza para un ejercicio de tipo 'Cardio'.")
@@ -19,8 +23,13 @@ class SerieFuerza(Serie):
         super().__init__(ejercicio)
         self.repeticiones = repeticiones
         self.peso_kg = peso_kg
+        self.descanso_segundos = descanso_segundos
+
+    def modificar_descanso(self, nuevo_descanso: int):
+        self.descanso_segundos = nuevo_descanso
 
     def obtener_detalle(self) -> str:
+        estado = "✅" if self.completada else "⏳"
         return f"Serie de fuerza: {self.ejercicio.nombre}, Repeticiones: {self.repeticiones}, Peso: {self.peso_kg} kg"
 
 
@@ -34,4 +43,5 @@ class SerieCardio(Serie):
         self.tiempo_minutos = tiempo_minutos
 
     def obtener_detalle(self) -> str:
+        estado = "✅" if self.completada else "⏳"
         return f"Serie de cardio: {self.ejercicio.nombre}, Distancia: {self.distancia_km} km, Tiempo: {self.tiempo_minutos} minutos"

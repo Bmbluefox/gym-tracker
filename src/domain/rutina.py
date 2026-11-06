@@ -1,8 +1,9 @@
 class Rutina:
-    def __init__(self, nombre: str, descripcion: str, ejercicios: list):
+    def __init__(self, nombre: str, descripcion: str, ejercicios: list, descanso_por_defecto: int = 120):
         self.nombre = nombre
         self.descripcion = descripcion
         self.ejercicios = ejercicios
+        self.descanso_por_defecto = descanso_por_defecto
 
     def agregar_ejercicio(self, ejercicio):
         self.ejercicios.append(ejercicio)

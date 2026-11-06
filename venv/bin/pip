@@ -1,4 +1,4 @@
-#!/Users/bautis/Documents/gym-tracker/venv/bin/python
+#!/Users/bautis/Documents/gym-tracker/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
